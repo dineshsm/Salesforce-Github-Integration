@@ -1,0 +1,6 @@
+<apex:page controller="Salesforce_Github_APIResource">
+<apex:form >
+<!--     <apex:commandButton action="{!githubPatchRequest}" value="Patch Action" /> -->
+<!--     <apex:commandButton action="{!createJSON}" value="Create JSON" /> -->
+</apex:form>
+</apex:page>
