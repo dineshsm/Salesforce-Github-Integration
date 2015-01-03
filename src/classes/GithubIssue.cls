@@ -111,6 +111,7 @@ public class GithubIssue {
         // condition to add milestone
         system.debug('issue.milestone_Url============'+issue.milestone_Url);
         if(issueMap.get('milestone') != null){
+        	system.debug('--when milestone is not present...');
             if(milestoneExists(issue.milestone_Url))
                 updateMilestone(issue);
             else
@@ -118,6 +119,8 @@ public class GithubIssue {
         }
         
         if(issue.issueNumber != null && issue.url != null){
+        	system.debug('--when issueNumber, issue.url is present...');
+        	system.debug('--issueExists(issue.url)...'+issueExists(issue.url));
             if (issueExists(issue.url))
                 updateIssue(issue);
             else
@@ -153,6 +156,8 @@ public class GithubIssue {
     
     // code to identify issue is exist or not
     public static boolean issueExists(String githubUrl) { 
+        system.debug('-----findIssue(githubUrl)-----'+findIssue(githubUrl));
+        
         if (findIssue(githubUrl) != null) {
             return True;
         } else {
@@ -162,6 +167,7 @@ public class GithubIssue {
     
     public static Github_Issue__c findIssue(String githubUrl) {
         Github_Issue__c issue = null;
+        system.debug('---githubUrl----'+githubUrl);
         List<Github_Issue__c> issues = [SELECT Id, 
                                                Name, 
                                                Description__c, 
@@ -179,7 +185,9 @@ public class GithubIssue {
                                                Story_Points__c
                                          FROM Github_Issue__c 
                                          WHERE Github_URL__c=:githubUrl  LIMIT 1];
-        if(issues.size() > 0) {
+        system.debug('---issues----'+issues);
+        
+        if(issues.size() > 0 && issues!= null) {
             return issues.get(0);
         } else {
             return issue;
@@ -204,6 +212,7 @@ public class GithubIssue {
 
     //Method to create Issue 
     public static void createIssue(GithubIssue issue) {
+    	system.debug('--createIssue...');
         GitHub_Milestones__c m = findMilestone(issue.milestone_Url);
         
         Github_Issue__c newIssue = new Github_Issue__c();
@@ -260,6 +269,7 @@ public class GithubIssue {
 
     //Method to Update Issue 
     public static void updateIssue(GithubIssue issue) {
+    	system.debug('--updateIssue...');
         GitHub_Milestones__c m = findMilestone(issue.milestone_Url);
         
         Github_Issue__c i   = findIssue(issue.url);
