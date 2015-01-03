@@ -8,7 +8,7 @@ global class GithubIssue_APIResource {
         RestResponse res = RestContext.response;
 
         try {    
-            //system.debug('req.requestBody.toString()==========='+req.requestBody.toString());
+            system.debug('req.requestBody.toString()==========='+req.requestBody.toString());
             Map<String, Object> body = (Map<String, Object>) System.JSON.deserializeUntyped(req.requestBody.toString());
             
             Map<String, Object> issueMap = (Map<String, Object>) body.get('issue');
@@ -26,10 +26,10 @@ global class GithubIssue_APIResource {
             if(assigneeMap != null)
                 issueMap.put('assignee', assigneeMap);
             
-            //system.debug('issueMap ==========='+issueMap);
-            //system.debug('repoMap==========='+repoMap);
-            //system.debug('commentMap==========='+commentMap);
-            //system.debug('milstoneMap==========='+milstoneMap);
+            system.debug('issueMap ==========='+issueMap);
+            system.debug('repoMap==========='+repoMap);
+            system.debug('commentMap==========='+commentMap);
+            system.debug('milstoneMap==========='+milstoneMap);
            
             
             GithubIssue.processIssue(issueMap);            

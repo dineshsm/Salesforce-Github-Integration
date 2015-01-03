@@ -89,4 +89,23 @@ private static Github_Integration_Setting__c gitbugDetails = Github_Integration_
         
     }
     
+    public void getAllRepositoryDetails(){
+    	system.debug('--getAllRepositoryDetails--');
+    	///repos/:owner/:repo
+    	Http httpCall = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setHeader('Authorization','Bearer '+gitbugDetails.Access_token__c);//'ba1237dcf955ecc7447875e0fe12fa2fc4bba91e'
+        request.setHeader('Content-Type','application/json');
+        request.setHeader('accept','application/json');
+        
+        //request.setBody(issueJsonString);//Send JSON body
+        request.setMethod('GET');
+        request.setEndpoint('https://api.github.com/repos/hitendra01/Salesforce-Github-Integration');//URL will be your Salesforce REST API end point where you will do POST,PUT,DELETE orGET
+        //request.setEndpoint(endPointUrl);
+        
+        HttpResponse response = httpCall.send(request);
+        system.debug('RESPONSE_BODY-----------------'+response .getbody());
+    	//return '';
+    }
+    
 }

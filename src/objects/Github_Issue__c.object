@@ -169,11 +169,7 @@
         <label>Repo</label>
         <picklist>
             <picklistValues>
-                <fullName>apto-dev</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>apto-hq-sandbox</fullName>
+                <fullName>Salesforce-Github-Integration</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
